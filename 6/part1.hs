@@ -1,12 +1,11 @@
-import Control.Monad.State
 import Data.Map.Strict as M
-import Data.List (break, stripPrefix)
+import Data.List (break)
 
-loadBody l = let (p, v) = break (==')') l in (tail v, p)
+loadEdges l = let (p, v) = break (==')') l in (tail v, p)
 
 main = do
     contents <- readFile "input.txt"
-    let edges = loadBody <$> lines contents
+    let edges = loadEdges <$> lines contents
         catalog = M.fromList edges
         direct = (size catalog)
         indirect = M.foldr (\p acc -> acc + (calcIndirect p)) 0 catalog

@@ -1,6 +1,5 @@
-import Control.Monad.State
 import Data.Map.Strict as M
-import Data.List (break, stripPrefix)
+import Data.List (break)
 
 loadEdges l = let (p, v) = break (==')') l in (tail v, p)
 
